@@ -4,8 +4,9 @@ const jwt = require('jsonwebtoken')
 const {getPhone} = require('../components/Phone')
 const bcrypt = require('bcryptjs')
 const authHelper = require('../config/authHelper')
-const {secret} = require('../config/app')
+const {secret} = require('../config/app').jwt
 const Token = require('../models/Token')
+const JWT = require("jsonwebtoken");
 const updateToken = (userId)=>{
 	const accessToken = authHelper.generateAccessToken(userId)
 	const refreshToken = authHelper.generateRefreshToken()
@@ -98,4 +99,22 @@ exports.create = async (req, res)=>{
 	}catch (err){
 		console.log(err);
 	}
+}
+
+
+exports.me = async (req,res)=>{
+	try{
+		const decoded = jwt.verify(req.headers.authorization.split(" ")[1], secret);
+		const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
+		const person = await Person.query().where('id',candidate.userId).first();
+		res.status(200).json({
+			success: true,
+			data:person,
+		});
+		return;
+	}catch (e){
+		console.log(e);
+		return;
+	}
+
 }

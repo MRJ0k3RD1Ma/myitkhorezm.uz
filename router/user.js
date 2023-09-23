@@ -4,6 +4,7 @@ const UserController = require('../controllers/UserController');
 const router = express.Router();
 
 router.get('/',UserController.findOne)
+router.get('/me',UserController.me)
 router.post('/create',UserController.create);
 router.post('/login',UserController.login)
 router.post('/refresh-token',UserController.refreshToken)
