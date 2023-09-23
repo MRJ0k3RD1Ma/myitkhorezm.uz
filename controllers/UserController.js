@@ -17,15 +17,6 @@ const updateToken = (userId)=>{
 	}))
 }
 
-exports.findOne = async (req, res) => {
-	try {
-		const model = await User.query().findOne('person_id',2509);
-		return res.status(200).json({ success: true, data: model });
-	} catch (error) {
-		console.log(error);
-	}
-};
-
 exports.findByAccessToken = async (req, res)=>{
 	try {
 		const model = await User.query().findOne('access_token',req.header.access_token);
@@ -85,6 +76,12 @@ exports.refreshToken = async (req,res)=>{
 }
 
 exports.create = async (req, res)=>{
+	if(req.body.secret != "123asditkhorezmuz"){
+		res.status(200).json({
+			success: false,
+			message: "Sizga bu joyga kirishga ruhsat yo`q!"
+		})
+	}
 	try {
 		const salt = await bcrypt.genSaltSync(12)
 		const password = await bcrypt.hashSync(req.body.password,salt)

@@ -13,3 +13,25 @@ exports.new = async (req,res)=>{
     })
 
 }
+
+exports.running = async (req,res)=>{
+    const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
+    const data = await group.query().whereRaw("id in (select group_id from student where person_id = "+candidate.userId+") and status_id = 2")
+
+    res.status(200).json({
+        success: true,
+        data: data
+    })
+
+}
+
+exports.done = async (req,res)=>{
+    const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
+    const data = await group.query().whereRaw("id in (select group_id from student where person_id = "+candidate.userId+") and status_id = 3")
+
+    res.status(200).json({
+        success: true,
+        data: data
+    })
+
+}
