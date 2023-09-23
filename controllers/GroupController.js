@@ -11,7 +11,6 @@ exports.new = async (req,res)=>{
         success: true,
         data: data
     })
-
 }
 
 exports.running = async (req,res)=>{
