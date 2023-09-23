@@ -3,9 +3,9 @@ const knex = require("../settings/mDb")
 
 Model.knex(knex)
 
-class User extends Model {
+class Token extends Model {
     static get tableName() {
-        return "person_user"
+        return "person_user_token"
     }
 
     static get jsonSchema() {
@@ -13,4 +13,4 @@ class User extends Model {
     }
 }
 
-module.exports = User
+module.exports = Token
