@@ -2,7 +2,8 @@ const User = require('../models/User');
 const Person = require('../models/Person');
 const group = require('../models/Group');
 const jwt = require('jsonwebtoken')
-const {getPhone} = require('../components/Phone')
+const {getPhone} = require('../components/Phone');
+const Student = require('../models/Student');
 const {secret} = require('../config/app').jwt;
 
 exports.new = async (req,res)=>{
@@ -31,6 +32,18 @@ exports.done = async (req,res)=>{
     res.status(200).json({
         success: true,
         data: data
+    })
+
+}
+
+exports.my = async (req,res)=>{
+
+    const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
+    const student = Student.query().where('group_id',req.params.id).andWhere("person_id",candidate.userId).andWhere("<>","status",2).groupBy("group_id").first();
+
+    res.status(200).json({
+        success: true,
+        data: student,
     })
 
 }
