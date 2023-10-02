@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const Person = require('../models/Person');
 const jwt = require('jsonwebtoken')
 const {getPhone} = require('../components/Phone')
 const bcrypt = require('bcryptjs')
@@ -100,9 +99,8 @@ exports.create = async (req, res)=>{
 
 exports.me = async (req,res)=>{
 	try{
-		const decoded = jwt.verify(req.headers.authorization.split(" ")[1], secret);
 		const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
-		const person = await Person.query().where('id',candidate.userId).first();
+		const person = await User.query().where('id',candidate.userId).first();
 		res.status(200).json({
 			success: true,
 			data:person,
