@@ -29,7 +29,6 @@ exports.findByAccessToken = async (req, res)=>{
 exports.login = async (req,res)=>{
 	try {
 	     const user = await User.query().where("username", req.body.login).first();
-
 			if (!user) {
 				return res
 					.status(404)
@@ -42,7 +41,7 @@ exports.login = async (req,res)=>{
 			// return res.status(200).json({ success: true, token });
 
 	} catch (error) {
-		console.log(error);
+		return res.status(400).json({success: false,error})
 	}
 }
 exports.refreshToken = async (req,res)=>{
