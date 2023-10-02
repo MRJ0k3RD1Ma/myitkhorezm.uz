@@ -3,7 +3,7 @@ module.exports = {
 		client: "mysql2",
 		connection: {
 			host: process.env.DB_HOST || 'localhost',
-			database: process.env.DB_DBNAME || 'crm_itpark',
+			database: process.env.DB_DBNAME || 'it_academy',
 			user: process.env.DB_USERNAME || 'root',
 			password: process.env.DB_PASSWORD || '',
 		},

@@ -18,8 +18,8 @@ exports.protect = async (req, res, next) => {
     try {
         //  verify token
         const decoded = JWT.verify(token, secret);
-        console.log(decoded);
-        req.user = await User.query().findOne('person_id', decoded.userId);
+        // console.log(decoded);
+        req.user = await User.query().findOne('id', decoded.userId);
         next();
     } catch (err) {
         return res.status(401).json({

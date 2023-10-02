@@ -5,7 +5,7 @@ Model.knex(knex)
 
 class User extends Model {
     static get tableName() {
-        return "person_user"
+        return "user"
     }
 
     static get jsonSchema() {

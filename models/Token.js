@@ -5,7 +5,7 @@ Model.knex(knex)
 
 class Token extends Model {
     static get tableName() {
-        return "person_user_token"
+        return "user_token"
     }
 
     static get jsonSchema() {

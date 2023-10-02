@@ -38,7 +38,7 @@ exports.login = async (req,res)=>{
 			if (!bcrypt.compareSync(req.body.password, user.password)) {
 				return res.status(400).json({ success: false, message: "error" });
 			}
-			updateToken(user.person_id).then(tokens=>res.status(200).json(tokens))
+			updateToken(user.id).then(tokens=>res.status(200).json(tokens))
 			// return res.status(200).json({ success: true, token });
 
 	} catch (error) {
