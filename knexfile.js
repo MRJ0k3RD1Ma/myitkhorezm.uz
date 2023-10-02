@@ -3,9 +3,9 @@ module.exports = {
 		client: "mysql2",
 		connection: {
 			host: process.env.DB_HOST || 'localhost',
-			database: process.env.DB_DBNAME || 'it_academy',
-			user: process.env.DB_USERNAME || 'root',
-			password: process.env.DB_PASSWORD || '',
+			database: process.env.DB_DBNAME || 'admin_it_academy',
+			user: process.env.DB_USERNAME || 'admin_it_academy',
+			password: process.env.DB_PASSWORD || '#ITacademy123',
 		},
 		pool: {
 			min: 0,
