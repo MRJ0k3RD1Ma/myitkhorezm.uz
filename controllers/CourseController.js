@@ -9,7 +9,7 @@ const LeadArchive = require("../models/LeadArchive");
 const {secret} = require('../config/app').jwt;
 
 exports.all = async (req,res)=>{
-    const course = await Course.query().where('status',1)
+    const course = await Course.query()
     res.status(200).json({
         success: true,
         data: course
