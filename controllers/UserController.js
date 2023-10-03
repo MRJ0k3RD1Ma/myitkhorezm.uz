@@ -1,5 +1,4 @@
 const User = require('../models/User');
-const Person = require('../models/Person');
 const jwt = require('jsonwebtoken')
 const {getPhone} = require('../components/Phone')
 const bcrypt = require('bcryptjs')
@@ -29,7 +28,6 @@ exports.findByAccessToken = async (req, res)=>{
 exports.login = async (req,res)=>{
 	try {
 	     const user = await User.query().where("username", req.body.login).first();
-
 			if (!user) {
 				return res
 					.status(404)
@@ -42,7 +40,7 @@ exports.login = async (req,res)=>{
 			// return res.status(200).json({ success: true, token });
 
 	} catch (error) {
-		console.log(error);
+		return res.status(400).json({success: false,error})
 	}
 }
 exports.refreshToken = async (req,res)=>{
@@ -101,9 +99,8 @@ exports.create = async (req, res)=>{
 
 exports.me = async (req,res)=>{
 	try{
-		const decoded = jwt.verify(req.headers.authorization.split(" ")[1], secret);
 		const candidate = jwt.decode(req.headers.authorization.split(" ")[1]);
-		const person = await Person.query().where('id',candidate.userId).first();
+		const person = await User.query().where('id',candidate.userId).first();
 		res.status(200).json({
 			success: true,
 			data:person,
