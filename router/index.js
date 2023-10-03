@@ -4,7 +4,7 @@ const app = express();
 
 app.use('/user',require('./user'))
 app.use('/group',protect,require('./group'))
-app.use('/cource',protect,require('./cource'))
+app.use('/course',protect,require('./course'))
 app.use('/leads',protect,require('./lead'))
 
 
