@@ -3,9 +3,9 @@ const knex = require("../settings/mDb")
 
 Model.knex(knex)
 
-class Cource extends Model {
+class Course extends Model {
 	static get tableName() {
-		return "cource"
+		return "course"
 	}
 
 	static get jsonSchema() {
@@ -13,4 +13,4 @@ class Cource extends Model {
 	}
 }
 
-module.exports = Cource
+module.exports = Course
