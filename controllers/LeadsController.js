@@ -32,3 +32,6 @@ exports.createLead = async (req, res) => {
         return console.log(err)
     }
 }
+exports.getLeads = async (req,res)=>{
+    
+}
